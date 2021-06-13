@@ -7,6 +7,18 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
+void	ft_putendl(char *s)
+{
+	if (s == NULL)
+		return ;
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+	}
+	write(1, "\n", 1);
+}
+
 int	ft_atoi(const char *str)
 {
 	int	num;

@@ -53,19 +53,17 @@ int main(int argc, char **argv)
 	printf("***valid ok***\n");
 	argc--;
 	a = ft_argv_to_list(argc, argv);
+//	printf("stack A:\n");
+//	prints(a);
 	printf("stack A:\n");
 	prints(a);
-	printf("AFTER SORT:\n");
-	ft_sort(&a, &b, argc);
+	printf("actions sort:\n");
+	ft_sort(&a,&b, argc);
+	printf("stack A sort:\n");
 	prints(a);
-
-
 
 	return (0);
 }
-
-
-
 
 //*** TRASH ***
 //int	ft_dupl(const int *numbers, int pos, int size)
