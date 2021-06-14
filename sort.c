@@ -80,7 +80,18 @@ void ft_sort(t_stack **a, t_stack **b, int size)
 	if (size == 3)
 		ft_case_iii(a);
 	if (size == 4)
+	{
 		ft_case_iv(a,b);
+		ft_case_iii(a);
+		if (b != NULL)
+			ft_push(b,a,"pa");
+	}
 	if (size == 5)
 		ft_case_v(a,b);
+	if (size > 5 && size < 100)
+		ft_case_c(a, b);
+//	if (size > 100)
+//		ft_case_d(a, b);
+
+
 }

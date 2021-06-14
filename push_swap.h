@@ -27,6 +27,9 @@ void ft_push_min_to_b(t_stack **a, t_stack **b);
 
 void ft_continue_iii(t_stack **a);
 void ft_case_iii(t_stack **a);
+void ft_case_iv(t_stack **a, t_stack **b);
+void ft_case_v(t_stack **a, t_stack **b);
+void ft_case_c(t_stack **a, t_stack **b);
 
 
 
