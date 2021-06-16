@@ -12,7 +12,7 @@ int ft_valid(char **argv)
 		while (argv[i][j])
 		{
 			//if(argv[i][j] >= 48 && argv[i][j] <= 57)
-			if(ft_isdigit(argv[i][j]))
+			if(ft_isdigit(argv[i][j]) || argv[i][j] == '-')
 			{
 				j++;
 			}
@@ -44,7 +44,9 @@ int main(int argc, char **argv)
 {
 	t_stack *a;
 	t_stack *b;
+	int i;
 
+	i = 0;
 	if(!ft_valid(argv))
 	{
 		printf("***valid fail***\n");
@@ -53,15 +55,17 @@ int main(int argc, char **argv)
 	printf("***valid ok***\n");
 	argc--;
 	a = ft_argv_to_list(argc, argv);
-//	printf("stack A:\n");
-//	prints(a);
-	printf("stack A:\n");
+	// split
+	printf("STACK A:\n");
 	prints(a);
-	printf("actions sort:\n");
-	ft_sort(&a,&b, argc);
-	printf("stack A sort:\n");
-	prints(a);
+	ft_indexing(&a, argc);
+	printf("after index:\n");
+	print_index(a);
 
+	printf("sort:\n");
+ 	ft_sort(&a,&b, argc);
+//	printf("stack A sort:\n");
+//	prints(a);
 	return (0);
 }
 

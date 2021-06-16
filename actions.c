@@ -8,6 +8,15 @@ void prints(t_stack *a)
 		a = a->next;
 	}
 }
+
+void print_index(t_stack *a)
+{
+	while (a)
+	{
+		printf("%d pos : %d idx: %d\n", a->data,a->pos, a->index);
+		a = a->next;
+	}
+}
 void ft_swap(t_stack *ab, char *str)
 {
 	t_stack temp;
