@@ -9,11 +9,12 @@ void prints(t_stack *a)
 	}
 }
 
-void print_index(t_stack *a)
+void print_b(t_stack *a)
 {
+	printf("STACK-B\n");
 	while (a)
 	{
-		printf("%d pos : %d idx: %d\n", a->data,a->pos, a->index);
+		printf("idx: %d\n", a->index);
 		a = a->next;
 	}
 }
@@ -38,9 +39,22 @@ void ft_push(t_stack **from, t_stack **into, char *str)
 {
 	t_stack *tmp;
 
+	if ((*from)== NULL)
+		return;
 	tmp = (*from)->next;
 	(*from)->next = *into;
 	*into = *from;
+	*from = tmp;
+	ft_putendl(str);
+}
+void ft_push_last(t_stack **from, t_stack **into, char *str)
+{
+	t_stack *tmp;
+	t_stack *new_into;
+
+	tmp = NULL;
+	new_into = *from;
+	new_into->next = *into;
 	*from = tmp;
 	ft_putendl(str);
 }

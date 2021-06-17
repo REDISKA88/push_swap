@@ -52,20 +52,20 @@ int main(int argc, char **argv)
 		printf("***valid fail***\n");
 		return (-1);
 	}
-	printf("***valid ok***\n");
+//	printf("***valid ok***\n");
 	argc--;
 	a = ft_argv_to_list(argc, argv);
 	// split
-	printf("STACK A:\n");
-	prints(a);
-	ft_indexing(&a, argc);
-	printf("after index:\n");
-	print_index(a);
-
-	printf("sort:\n");
- 	ft_sort(&a,&b, argc);
-//	printf("stack A sort:\n");
+//	printf("STACK A:\n");
 //	prints(a);
+	ft_indexing(&a, argc);
+//	printf("after index:\n");
+//	print_index(a);
+ 	ft_sort(&a,&b, argc);
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	print_b(b);
 	return (0);
 }
 

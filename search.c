@@ -30,15 +30,23 @@ t_stack *ft_find_min(t_stack **ab)
 	}
 	return (min);
 }
-t_stack *ft_find_second(t_stack *tmp, int range)
+
+t_stack *ft_find_last(t_stack *tmp, int range)
 {
 	t_stack *bot;
 
 	while (tmp)
 	{
-		if (tmp->index < range)
+		if (tmp->index <= range)
 			bot = tmp;
 		tmp = tmp->next;
 	}
 	return (bot);
+}
+
+int ft_find_pos(t_stack *a, t_stack *pos)
+{
+	while (a->index != pos->index)
+		a = a->next;
+	return a->pos;
 }

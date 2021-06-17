@@ -31,11 +31,15 @@ t_stack *ft_argv_to_list(int argc, char **argv)
 int ft_count_list(t_stack *a)
 {
 	int i;
+	int pos;
 
 	i = 0;
+	pos = 0;
 	while (a)
 	{
 		i++;
+		pos++;
+		a->pos = pos;
 		a = a->next;
 	}
 	return (i);

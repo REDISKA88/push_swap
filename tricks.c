@@ -21,3 +21,23 @@ void ft_push_min_to_b(t_stack **a, t_stack **b)
 	}
 		ft_push(a,b,"pb");
 }
+
+void ft_init_pos(t_stack *a, t_stack *b)
+{
+	int pos;
+
+	pos = 1;
+	while (a)
+	{
+		a->pos = pos;
+		a = a->next;
+		pos++;
+	}
+	pos = 1;
+	while (b)
+	{
+		b->pos = pos;
+		b = b->next;
+		pos++;
+	}
+}

@@ -88,8 +88,8 @@ void ft_sort(t_stack **a, t_stack **b, int size)
 	}
 	if (size == 5)
 		ft_case_v(a,b);
-	if (size > 5 && size < 100)
-		ft_case_c(a,b, 5);
+	if (size > 5 && size < 101)
+		ft_mid_sort(a, b, 20);
 //	if (size > 100)
 //		ft_case_d(a, b);
 
