@@ -66,6 +66,10 @@ int main(int argc, char **argv)
 	printf("\n");
 	printf("\n");
 	print_b(b);
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	print_a(a);
 	return (0);
 }
 

@@ -8,7 +8,15 @@ void prints(t_stack *a)
 		a = a->next;
 	}
 }
-
+void print_a(t_stack *a)
+{
+	printf("STACK-A\n");
+	while (a)
+	{
+		printf("idx: %d\n", a->index);
+		a = a->next;
+	}
+}
 void print_b(t_stack *a)
 {
 	printf("STACK-B\n");

@@ -50,3 +50,4 @@ int ft_find_pos(t_stack *a, t_stack *pos)
 		a = a->next;
 	return a->pos;
 }
+

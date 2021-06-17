@@ -28,19 +28,19 @@ int ft_find_bot(t_stack *a, int range)
 	}
 	return bot;
 }
-int ft_find_maximal(t_stack *a)
+int ft_find_maximal(t_stack *ab)
 {
 	t_stack *tmp;
 
-	tmp = a;
-	a = a->next;
-	while (a)
+	tmp = ab;
+	ab = ab->next;
+	while (ab)
 	{
-		if (a->data > tmp->data)
-			tmp = a;
-		a = a->next;
+		if (ab->index > tmp->index)
+			tmp = ab;
+		ab = ab->next;
 	}
-	return (tmp->index);
+	return (tmp->pos);
 }
 
 void ft_mid_sort(t_stack **a, t_stack **b, int range)
@@ -54,6 +54,7 @@ void ft_mid_sort(t_stack **a, t_stack **b, int range)
 		if (count == range)
 			range = range + 20;
 	}
+	ft_continue_sort(a,b);
 }
 
 int ft_sorting(t_stack **a, t_stack **b, int range)

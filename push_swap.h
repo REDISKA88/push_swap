@@ -22,7 +22,8 @@ int ft_sorting(t_stack **a, t_stack **b, int range);
 void ft_mid_sort(t_stack **a, t_stack **b, int range);
 int ft_find_maximal(t_stack *a);
 void print_b(t_stack *a);
-
+void print_a(t_stack *a);
+void ft_continue_sort(t_stack **a, t_stack **b);
 //
 int	main(int argc, char *argv[]);
 int ft_valid(char **argv);
