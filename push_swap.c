@@ -11,7 +11,6 @@ int ft_valid(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			//if(argv[i][j] >= 48 && argv[i][j] <= 57)
 			if(ft_isdigit(argv[i][j]) || argv[i][j] == '-')
 			{
 				j++;
@@ -40,6 +39,15 @@ int ft_find_dupl(int pos, int argc, char **argv)
 	}
 	return 1;
 }
+int ft_argv_count(char **argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i);
+}
 int main(int argc, char **argv)
 {
 	t_stack *a;
@@ -47,57 +55,31 @@ int main(int argc, char **argv)
 	int i;
 
 	i = 0;
-	if(!ft_valid(argv))
+	if (argc == 2)
 	{
-		printf("***valid fail***\n");
+		argv = ft_split(argv[1], ' ');
+		argc = ft_argv_count(argv);
+		printf("ARGC: %d\n", argc);
+	}
+	if (argc > 2)
+	{
+		if(!ft_valid(argv))
+		{
+			printf("***valid fail***\n");
+			return (-1);
+		}
+		argc--;
+		a = ft_argv_to_list(argc, argv);
+		if (!a)
+			return (-1);
+		ft_indexing(&a, argc);
+		ft_sort(&a,&b, argc);
+	}
+	if (argc < 2)
+	{
+		printf("ERROR\n");
 		return (-1);
 	}
-//	printf("***valid ok***\n");
-	argc--;
-	a = ft_argv_to_list(argc, argv);
-	// split
-//	printf("STACK A:\n");
-//	prints(a);
-	ft_indexing(&a, argc);
-//	printf("after index:\n");
-//	print_index(a);
- 	ft_sort(&a,&b, argc);
-	printf("\n");
-	printf("\n");
-	printf("\n");
-	print_b(b);
-	printf("\n");
-	printf("\n");
-	printf("\n");
-	print_a(a);
+
 	return (0);
 }
-
-//*** TRASH ***
-//int	ft_dupl(const int *numbers, int pos, int size)
-//{
-//	int index;
-//
-//	index = pos + 1;
-//	while (index <= size)
-//	{
-//		if (numbers[pos] == numbers[index])
-//			return (0);
-//		index++;
-//	}
-//return (1);
-//}
-//int	ft_dupl(t_stack **a)
-//{
-//	t_stack *tmp;
-//	t_stack *pos;
-//	tmp = (*a)->next;
-//	pos = *a;
-//		while (tmp)
-//		{
-//			if (tmp->data == pos->data)
-//				return (0);
-//			tmp = tmp->next;
-//		}
-//	return (1);
-//}

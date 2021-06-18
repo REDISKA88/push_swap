@@ -90,7 +90,6 @@ int ft_sorting(t_stack **a, t_stack **b, int range)
 		ft_count_list(*a);
 	}
 	return count;
-
 }
 //void ft_brazhnik_sort(t_stack *a, t_stack *b, int size)
 //{
