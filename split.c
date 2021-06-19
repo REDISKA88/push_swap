@@ -40,6 +40,7 @@ static	void	*ft_freedest(char **dest, int n)
 	free (dest);
 	return (NULL);
 }
+
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	char			*dst;
@@ -59,6 +60,7 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 	dst[len] = '\0';
 	return (dst);
 }
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;

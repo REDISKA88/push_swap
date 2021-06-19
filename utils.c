@@ -1,4 +1,31 @@
 #include "push_swap.h"
+void	ft_free_all(t_stack **ab, t_tool *t, char **argv, int print)
+{
+	int		i;
+	t_stack	*tmp;
+	t_stack	*list;
+
+	i = 0;
+	list = *ab;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(t);
+	free(argv);
+	while (list)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
+	*ab = NULL;
+	if (print == 1)
+		ft_putendl("Error");
+	exit(1);
+}
+
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
@@ -7,22 +34,10 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-void	ft_putendl(char *s)
-{
-	if (s == NULL)
-		return ;
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-	}
-	write(1, "\n", 1);
-}
-
 int	ft_atoi(const char *str)
 {
-	int	num;
-	int	sign;
+	long	num;
+	int		sign;
 
 	num = 0;
 	sign = 1;
@@ -39,17 +54,10 @@ int	ft_atoi(const char *str)
 		num = (num * 10) + (*str - '0');
 		str++;
 	}
+	ft_check_number(num);
 	return (num * sign);
 }
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
 
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
 void	*ft_memcpy(void *dst, const void *src, size_t num)
 {
 	char		*edst;

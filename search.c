@@ -1,8 +1,8 @@
 #include "push_swap.h"
-t_stack *ft_find_max(t_stack **ab)
+t_stack	*ft_find_max(t_stack **ab)
 {
-	t_stack *tmp;
-	t_stack *max;
+	t_stack	*tmp;
+	t_stack	*max;
 
 	tmp = *ab;
 	while (tmp != NULL)
@@ -14,11 +14,10 @@ t_stack *ft_find_max(t_stack **ab)
 	return (max);
 }
 
-t_stack *ft_find_min(t_stack **ab)
+t_stack	*ft_find_min(t_stack **ab)
 {
-	t_stack *tmp;
-	t_stack *min;
-
+	t_stack	*tmp;
+	t_stack	*min;
 
 	tmp = *ab;
 	min = tmp;
@@ -31,9 +30,9 @@ t_stack *ft_find_min(t_stack **ab)
 	return (min);
 }
 
-t_stack *ft_find_last(t_stack *tmp, int range)
+t_stack	*ft_find_last(t_stack *tmp, int range)
 {
-	t_stack *bot;
+	t_stack	*bot;
 
 	while (tmp)
 	{
@@ -44,10 +43,9 @@ t_stack *ft_find_last(t_stack *tmp, int range)
 	return (bot);
 }
 
-int ft_find_pos(t_stack *a, t_stack *pos)
+int	ft_find_pos(t_stack *a, t_stack *pos)
 {
 	while (a->index != pos->index)
 		a = a->next;
-	return a->pos;
+	return (a->pos);
 }
-

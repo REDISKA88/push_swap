@@ -1,67 +1,66 @@
 #include "push_swap.h"
-void ft_continue_sort(t_stack **a, t_stack **b)
+void	ft_continue_sort(t_stack **a, t_stack **b, t_tool *t)
 {
-	int max_pos;
-	int max_mov;
-	int size;
-
-	size = ft_count_list(*b);
-	while (size)
+	t->cs_size = ft_count_list(*b);
+	while (t->cs_size)
 	{
-		ft_count_list(*b);
-		max_pos = ft_find_maximal(*b);
-		max_mov = (max_pos - 1);
-		while (max_mov--)
-			ft_rotate(b,"rb");
-		ft_push(b,a,"pa");
-		size--;
+		t->cs_size = ft_count_list(*b);
+		t->cs_max_pos = ft_find_maximal(*b);
+		t->cs_max_mov = (t->cs_max_pos - 1);
+		t->cs_bottom = (t->cs_size - t->cs_max_pos) + 1;
+		if (t->cs_max_mov <= t->cs_bottom && t->cs_max_mov > 0)
+		{
+			while (t->cs_max_mov--)
+				ft_rotate(b, "rb");
+		}
+		if (t->cs_bottom < t->cs_max_mov && t->cs_bottom > 0)
+		{
+			while (t->cs_bottom--)
+				ft_reverse_rotate(b, "rrb");
+		}
+		ft_push(b, a, "pa");
+		t->cs_size--;
 	}
 }
 
-int ft_bigsorting(t_stack **a, t_stack **b, int range)
+int	ft_bigsorting(t_stack **a, t_stack **b, int range, t_tool *t)
 {
-	int top_pos;
-	int bot_pos;
-	int top_mov;
-	int bot_mov;
-	int count;
-
-	count = 0;
-	if (range > 45)
-		count = (range - 45);
-	while (count < range)
+	t->bs_count = 0;
+	if (range > 40)
+		t->bs_count = (range - 40);
+	while (t->bs_count < range)
 	{
-		top_pos = ft_find_top(*a, range);
-		bot_pos = ft_find_bot(*a, range);
-		top_mov = (top_pos - 1);
-		bot_mov = (ft_count_list(*a) - bot_pos) + 1;
-		if (top_mov < bot_mov && top_mov > 0)
+		t->bs_top_pos = ft_find_top(*a, range);
+		t->bs_bot_pos = ft_find_bot(*a, range);
+		t->bs_top_mov = (t->bs_top_pos - 1);
+		t->bs_bot_mov = (ft_count_list(*a) - t->bs_bot_pos) + 1;
+		if (t->bs_top_mov < t->bs_bot_mov && t->bs_top_mov > 0)
 		{
-
-			while (top_mov--)
-				ft_rotate(a,"ra");
+			while (t->bs_top_mov--)
+				ft_rotate(a, "ra");
 		}
-		if (bot_mov < top_mov && bot_mov > 0)
+		else if (t->bs_bot_mov < t->bs_top_mov && t->bs_bot_mov > 0)
 		{
-			while (bot_mov--)
-				ft_reverse_rotate(a,"rra");
+			while (t->bs_bot_mov--)
+				ft_reverse_rotate(a, "rra");
 		}
-		ft_push(a,b,"pb");
-		count++;
+		ft_push(a, b, "pb");
+		t->bs_count++;
 		ft_count_list(*a);
 	}
-	return count;
+	return (t->bs_count);
 }
-void ft_big_sort(t_stack **a, t_stack **b, int range)
+
+void	ft_big_sort(t_stack **a, t_stack **b, int range, t_tool *t)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (*a)
 	{
-		count = ft_bigsorting(a, b, range);
+		count = ft_bigsorting(a, b, range, t);
 		if (count == range)
-			range = range + 45;
+			range = range + 40;
 	}
-	ft_continue_sort(a,b);
+	ft_continue_sort(a, b, t);
 }

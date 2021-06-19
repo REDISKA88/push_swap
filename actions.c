@@ -1,76 +1,34 @@
 #include "push_swap.h"
-#include "stdio.h"
-void prints(t_stack *a)
+void	ft_swap(t_stack **ab, char *str)
 {
-	while (a)
-	{
-		printf("%d\n", a->data);
-		a = a->next;
-	}
-}
-void print_a(t_stack *a)
-{
-	printf("STACK-A\n");
-	while (a)
-	{
-		printf("idx: %d\n", a->index);
-		a = a->next;
-	}
-}
-void print_b(t_stack *a)
-{
-	printf("STACK-B\n");
-	while (a)
-	{
-		printf("idx: %d\n", a->index);
-		a = a->next;
-	}
-}
-void ft_swap(t_stack *ab, char *str)
-{
-	t_stack temp;
+	t_stack	*tmp;
 
-	temp.data = ab->data;
-	ab->data = ab->next->data;
-	ab->next->data = temp.data;
+	if (*ab == NULL)
+		return ;
+	tmp = *ab;
+	*ab = (*ab)->next;
+	tmp->next = (*ab)->next;
+	(*ab)->next = tmp;
 	ft_putendl(str);
 }
 
-void ft_swap_swap(t_stack *a, t_stack *b)
+void	ft_push(t_stack **from, t_stack **into, char *str)
 {
-	ft_swap(a,"ss");
-	ft_swap(b, "ss");
-	write(1, "ss\n", 3);
-}
+	t_stack	*tmp;
 
-void ft_push(t_stack **from, t_stack **into, char *str)
-{
-	t_stack *tmp;
-
-	if ((*from)== NULL)
-		return;
+	if ((*from) == NULL)
+		return ;
 	tmp = (*from)->next;
 	(*from)->next = *into;
 	*into = *from;
 	*from = tmp;
 	ft_putendl(str);
 }
-void ft_push_last(t_stack **from, t_stack **into, char *str)
-{
-	t_stack *tmp;
-	t_stack *new_into;
 
-	tmp = NULL;
-	new_into = *from;
-	new_into->next = *into;
-	*from = tmp;
-	ft_putendl(str);
-}
-
-void ft_rotate(t_stack **ab, char *str)
+void	ft_rotate(t_stack **ab, char *str)
 {
-	t_stack *up;
-	t_stack *sec;
+	t_stack	*up;
+	t_stack	*sec;
 
 	up = (*ab);
 	sec = up->next;
@@ -82,31 +40,17 @@ void ft_rotate(t_stack **ab, char *str)
 	ft_putendl(str);
 }
 
-void ft_rotate_rotate(t_stack **a, t_stack **b)
+void	ft_reverse_rotate(t_stack **ab, char *str)
 {
-	ft_rotate(a,"rr");
-	ft_rotate(b, "rr");
-	write(1,"rr\n", 3);
-}
-
-void ft_reverse_rotate(t_stack **ab, char *str)
-{
-	t_stack *list;
-	t_stack *last;
+	t_stack	*list;
+	t_stack	*last;
 
 	list = *ab;
 	while (list->next->next != NULL)
 		list = list->next;
 	last = list->next;
 	list->next = NULL;
-	last->next  = *ab;
+	last->next = *ab;
 	*ab = last;
 	ft_putendl(str);
-}
-
-void ft_rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse_rotate(a, "rrr");
-	ft_reverse_rotate(b, "rrr");
-	write(1,"rrr\n", 4);
 }

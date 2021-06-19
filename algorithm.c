@@ -1,24 +1,24 @@
 #include "push_swap.h"
-
-int ft_find_top(t_stack *a, int range)
+int	ft_find_top(t_stack *a, int range)
 {
-	int top;
+	int	top;
+
 	top = 0;
 	while (a)
 	{
 		if (a->index <= range)
 		{
 			top = a->pos;
-			break;
+			break ;
 		}
 		a = a->next;
 	}
-	return top;
+	return (top);
 }
 
-int ft_find_bot(t_stack *a, int range)
+int	ft_find_bot(t_stack *a, int range)
 {
-	int bot;
+	int	bot;
 
 	while (a)
 	{
@@ -26,11 +26,12 @@ int ft_find_bot(t_stack *a, int range)
 			bot = a->pos;
 		a = a->next;
 	}
-	return bot;
+	return (bot);
 }
-int ft_find_maximal(t_stack *ab)
+
+int	ft_find_maximal(t_stack *ab)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = ab;
 	ab = ab->next;
@@ -43,66 +44,44 @@ int ft_find_maximal(t_stack *ab)
 	return (tmp->pos);
 }
 
-void ft_mid_sort(t_stack **a, t_stack **b, int range)
+void	ft_mid_sort(t_stack **a, t_stack **b, int range, t_tool *t)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (*a)
 	{
-		count = ft_sorting(a, b, range);
+		count = ft_sorting(a, b, range, t);
 		if (count == range)
 			range = range + 20;
 	}
-	ft_continue_sort(a,b);
+	ft_continue_sort(a, b, t);
 }
 
-int ft_sorting(t_stack **a, t_stack **b, int range)
+int	ft_sorting(t_stack **a, t_stack **b, int range, t_tool *t)
 {
-	int top_pos;
-	int bot_pos;
-	int top_mov;
-	int bot_mov;
-	int count;
-
-	count = 0;
+	t->s_count = 0;
 	if (range > 20)
-		count = (range - 20);
-	while (count < range)
+		t->s_count = (range - 20);
+	while (t->s_count < range)
 	{
-		top_pos = ft_find_top(*a, range);
-		bot_pos = ft_find_bot(*a, range);
-		top_mov = (top_pos - 1);
-		bot_mov = (ft_count_list(*a) - bot_pos) + 1;
-		if (top_mov < bot_mov && top_mov > 0)
+		t->s_top_pos = ft_find_top(*a, range);
+		t->s_bot_pos = ft_find_bot(*a, range);
+		t->s_top_mov = (t->s_top_pos - 1);
+		t->s_bot_mov = (ft_count_list(*a) - t->s_bot_pos) + 1;
+		if (t->s_top_mov < t->s_bot_mov && t->s_top_mov > 0)
 		{
-
-			while (top_mov--)
-				ft_rotate(a,"ra");
+			while (t->s_top_mov--)
+				ft_rotate(a, "ra");
 		}
-		if (bot_mov < top_mov && bot_mov > 0)
+		else if (t->s_bot_mov < t->s_top_mov && t->s_bot_mov > 0)
 		{
-			while (bot_mov--)
-				ft_reverse_rotate(a,"rra");
+			while (t->s_bot_mov--)
+				ft_reverse_rotate(a, "rra");
 		}
-		ft_push(a,b,"pb");
-		count++;
+		ft_push(a, b, "pb");
+		t->s_count++;
 		ft_count_list(*a);
 	}
-	return count;
+	return (t->s_count);
 }
-//void ft_brazhnik_sort(t_stack *a, t_stack *b, int size)
-//{
-//	int index_max;
-//
-//	index_max = ft_find_maximal(a);
-//	while (size > 3)
-//	{
-//		if (a->index < (index_max - 2))
-//		{
-//			ft_push(&a,&b,"pb");
-//			size--;
-//		}
-//		a = a->next;
-//	}
-//}
